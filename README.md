@@ -1,0 +1,2 @@
+# ConfWare
+Configuration Warehouse.

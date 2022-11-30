@@ -1,0 +1,98 @@
+[tool.poetry]
+name = "project"
+version = '0.1.0'
+description = "python lib"
+authors = ["Emia <raojin@xxx.com>"]
+readme = "README.rst"
+packages = [
+    {include = "a", from = "src"},
+    {include = "b", from = "src"},
+    {include = "c", from = "src"},
+]
+include =[
+    { path = "doc/html", format = ["sdist", "wheel"] },
+]
+exclude = [
+    "src/a/b/c/d",
+]
+
+[tool.poetry.dependencies]
+python = "^3.8, <3.11"
+numpy = "1.22.4"
+gdspy = "1.6.12"
+matplotlib = "*"
+multidict = "6.0.2"
+pandas = "1.4.2"
+pillow = "9.1.1"
+pyyaml = "6.0"
+requests = "2.27.1"
+seaborn = "0.11.2"
+tomli = "2.0.1"
+aiohttp = "^3.8.3"
+nest_asyncio = "^1.5.6"
+
+[tool.poetry.scripts]
+"mypro" = "project_name.console:run"
+
+#[[tool.poetry.source]]
+#name = "douban"
+#url = "https://pypi.douban.com/simple"
+#default = false
+#secondary = true
+
+
+[[tool.poetry.source]]
+name = "tsinghua"
+url = "https://pypi.tuna.tsinghua.edu.cn/simple"
+default = true
+secondary = false
+
+[tool.poetry.group.dev.dependencies]
+wheel = "^0.38.4"
+tox = "^3.27.0"
+pytest = "^7.2.0"
+mypy = "^0.990"
+pre-commit = "^2.20.0"
+black = "^22.10.0"
+flake8 = "^5.0.4"
+flake8-noqa = "^1.2.9"
+setuptools = "^65.5.1"
+packaging = "^21.3"
+sphinx-book-theme = "^0.3.3"
+
+[build-system]
+requires = ["poetry-core"] #"cython ~= 0.29.0"
+build-backend = "poetry.core.masonry.api"
+
+
+#[tool.cibuildwheel]
+#test-command = "python {project}/tests/test.py"
+#test-skip = "*universal2:arm64"
+
+[tool.black]
+
+line-length = 120
+target-version = ['py38']
+include = '\.pyi?$'
+exclude = '''
+(
+  /(
+      \.eggs         # exclude a few common directories in the
+    | \.git          # root of the project
+    | \.hg
+    | \.mypy_cache
+    | \.tox
+    | \.venv
+    | _build
+    | buck-out
+    | build
+    | dist
+    | Docs
+    | migrations
+  )/
+  | foo.py           # also separately exclude a file named foo.py in
+                     # the root of the project
+  | Docs/tasks.py
+
+)
+'''
